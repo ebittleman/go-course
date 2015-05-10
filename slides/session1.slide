@@ -1,0 +1,104 @@
+Summer Coding 2015
+Introduction to Go
+1 Jun 2015
+Tags: golang, intro
+
+Eric Bittleman
+Head of Software Development, Heyo
+ebittleman@heyo.com
+https://heyo.com
+
+* About Me
+
+*Experience*
+
+I have been developing software professionally for the past 8 years. 6 of which were in a team lead or management role.
+
+*Professional*Interests*
+
+- Web Development
+- Systems Administration and Automation
+- B2B Integrations
+- Organizational Development and Engineering
+
+* What is Go?
+
+Go, or golang is a programming language that has the aim of making systems and network programming easier.
+
+*Basic*Features*
+
+- Compiles To Machine Code
+- Is garbage collected
+- Builtin Primatives for Concurrency (channels)
+- Has interfaces and structs like C++ but its not really object oriented
+
+* Installation
+
+*Linux*-*Go*1.4.2*
+
+    # Dependencies
+    sudo apt-get update; sudo apt-get install -y git mercurial
+
+	cd
+	curl -o go1.4.2.linux-amd64.tar.gz https://storage.googleapis.com/golang/go1.4.2.linux-amd64.tar.gz
+	tar -xzf go1.4.2.linux-amd64.tar.gz
+	sudo mv go /usr/local/go
+	sudo chown -R root:root /usr/local/go
+	mkdir go
+	export PATH=$PATH:/usr/local/go/bin
+	export GOPATH=$HOME/go
+	go version
+
+*Ouput:*
+
+    go version go1.4.2 linux/amd64
+
+* What did we just do?
+
+- Downloaded an archive containing Go pre-compiled
+- Installed it in its default home (/usr/local/go). Also, known as the GOROOT
+- Created a Go workspace in your home directory (~/go)
+- Told our system where to find the Go commands
+- Told our system where to find our go workspace also know as the GOPATH
+- Tested out installation by printing the version of Go.
+
+*The*Go*Workspace* ($GOPATH)
+
+    ~/go
+    ├── bin    # Where go will install programs
+    ├── pkg    # Where go will install libraries
+    └── src    # Where you and go will store the source code
+
+* Builtin Tools and Commands
+
+- go - Manages go workspaces. Downloads, Compiles, Tests, Runs, and Installs Go projects
+
+	Usage:
+
+		go command [arguments]
+
+	The commands are:
+
+	    build       compile packages and dependencies
+	    clean       remove object files
+	    env         print Go environment information
+	    fix         run go tool fix on packages
+	    fmt         run gofmt on package sources
+	    generate    generate Go files by processing source
+	    get         download and install packages and dependencies
+	    install     compile and install packages and dependencies
+	    list        list packages
+	    run         compile and run Go program
+	    test        test packages
+	    tool        run specified go tool
+	    version     print Go version
+	    vet         run go tool vet on packages
+
+* Lets download and install a go program
+
+    sudo apt-get install -y libjack0 libjack-dev portaudio19-dev mesa-common-dev freeglut3-dev libxrandr-dev libxcursor-dev libxinerama-dev libxi-dev
+	go get github.com/fogleman/nes
+
+* Some Code
+
+.play ex.go
