@@ -1,4 +1,4 @@
-package gocourse
+package guestbook
 
 import "time"
 

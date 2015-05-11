@@ -1,10 +1,8 @@
-package gocourse
+package guestbook
 
 import (
 	"net/http"
 	"time"
-
-	_ "golang.org/x/tools/cmd/present"
 
 	"appengine"
 	"appengine/datastore"
