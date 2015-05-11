@@ -4,13 +4,15 @@ import (
 	"net/http"
 	"time"
 
+	_ "golang.org/x/tools/cmd/present"
+
 	"appengine"
 	"appengine/datastore"
 	"appengine/user"
 )
 
 func init() {
-	http.HandleFunc("/", root)
+	http.HandleFunc("/guestbook", root)
 	http.HandleFunc("/sign", sign)
 }
 
@@ -68,5 +70,5 @@ func sign(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 
-	http.Redirect(w, r, "/", http.StatusFound)
+	http.Redirect(w, r, "/guestbook", http.StatusFound)
 }
