@@ -5,21 +5,27 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Product Form</title>
+    <link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
 </head>
-<body>
+<body class="container">
     <h1>New Product</h1>
-    <form action="/api/v1/product" method="POST" enctype="application/x-www-form-urlencoded">
-        <div>
-            <label for="name">Name</label>
-            <input name="name" type="text">
+    <div class="row">
+        <div class="col-xs-4">
+            <form action="/api/v1/product" method="POST" enctype="application/x-www-form-urlencoded" role="form">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input name="name" type="text" id="name" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="price">Price</label>
+                    <input name="price" type="text" class="form-control" id="price">
+                </div>
+                <button type="submit" class="btn btn-default">Save Product</button>
+                <div class="form-group">
+                </div>
+            </form>
         </div>
-        <div>
-            <label for="price">Price</label>
-            <input name="price" type="text">
-        </div>
-        <div>
-            <button type="submit">Save Product</button>
-        </div>
-    </form>
+    </div>
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js">
 </body>
 </html>

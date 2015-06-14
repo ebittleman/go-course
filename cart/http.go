@@ -1,7 +1,6 @@
 package cart
 
 import (
-	"io"
 	"log"
 	"net/http"
 	"path/filepath"
@@ -29,5 +28,5 @@ func HandleRequest(resp http.ResponseWriter, req *http.Request) {
 }
 
 func HandleCreateProduct(resp http.ResponseWriter, req *http.Request) {
-	io.Copy()
+
 }
