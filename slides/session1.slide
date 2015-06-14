@@ -1,6 +1,6 @@
 Summer Coding 2015
 Introduction to Go
-1 Jun 2015
+18 Jun 2015
 Tags: golang, intro
 
 Eric Bittleman
@@ -25,49 +25,95 @@ I have been developing software professionally for the past 8 years. 6 of which 
 
 Go, or golang is a programming language that has the aim of making systems and network programming easier.
 
-*Basic*Features*
+*What*can*you*make*with*it?*
 
-- Compiles To Machine Code
-- Is garbage collected
-- Builtin Primatives for Concurrency (channels)
-- Has interfaces and structs like C++ but its not really object oriented
+- Websites
+- Games
+- Mobile Apps
+- Presentations
+- ... pretty much anything
 
-* Installation
+*What*are*we*going*to*make*today*
 
-*Linux*-*Go*1.4.2*
+Plan A: A very simple twitter clone
 
-    # Dependencies
-    sudo apt-get update; sudo apt-get install -y git mercurial
+Plan B: A website that sells stuff
 
-	cd
-	curl -o go1.4.2.linux-amd64.tar.gz https://storage.googleapis.com/golang/go1.4.2.linux-amd64.tar.gz
-	tar -xzf go1.4.2.linux-amd64.tar.gz
-	sudo mv go /usr/local/go
-	sudo chown -R root:root /usr/local/go
-	mkdir go
-	export PATH=$PATH:/usr/local/go/bin
-	export GOPATH=$HOME/go
-	go version
+* Tools We Are Going To Be Using
 
-*Ouput:*
+* Sublime Text With GoSublime Plugin
 
-    go version go1.4.2 linux/amd64
+.image ./images/sublime-logo.jpg
 
-* What did we just do?
+*Used*For*Editting*Code*
 
-- Downloaded an archive containing Go pre-compiled
-- Installed it in its default home (/usr/local/go). Also, known as the GOROOT
-- Created a Go workspace in your home directory (~/go)
-- Told our system where to find the Go commands
-- Told our system where to find our go workspace also know as the GOPATH
-- Tested out installation by printing the version of Go.
+Features
 
-*The*Go*Workspace* ($GOPATH)
+- Code Coloring - Makes it easier to read code
+- Code Completetion - Will show you available functions and variables
+- Auto Formatting - Makes sure your code is well formatted and readable 
+- Automatically Imports Packages - automaically detects and imports go packages
 
-    ~/go
-    ├── bin    # Where go will install programs
-    ├── pkg    # Where go will install libraries
-    └── src    # Where you and go will store the source code
+* Go SDK
+
+.image ./images/golang-logo.png _ 225
+
+*Used*For*Managing*Your*Workspace*
+
+Features
+
+- Can Run Your Programs On The Fly
+- Automatically Compiles Your Projects
+- Runs Test
+- Downloads Dependencies
+
+*  Git Bash
+
+.image ./images/git-logo.png _ 225
+
+*Used*to*run*the*GO*SDK*and*use*GIT*
+
+Features
+
+- Windows version of the BASH Shell
+- Auto Completion of Commands
+- Shows Extra Git Information
+
+
+* Product Ideas From Last Week (Part 1)
+
+- Voice Commanding Headphone - wearable tech, can do things like change current song
+  implementation 
+    - mobile app connected to language processing apis and natural language processing
+- Customised shoe design
+  implementation 
+    - website that uses imagemagick to overlay color/themes onto stock show models
+- Phone tutorial services
+  implementation
+    - Table of Contents of Features to Win
+    - Phone module emulation with wizards to guide students
+
+* Product Ideas From Last Week (Part 2)
+- Video Game Emulator or Streaming Services
+  implementation
+    - to complex
+- Headphones that connect directly to music stream services
+  implementation
+    - bluetooth drived device connects to mobile, possible `brillo` ran device
+- Phone projector
+  implementaion
+   - pizza hut box projector
+
+*Top*Themes*
+ - wearable tech with music
+
+* Product Ideas, Round 2
+
+- heated flip flops
+- wearable tech, headphones with voice control
+- portable coffee machine
+- app to meetup and communicate and sell to customers
+- brick and mortor store with musician merchandise
 
 * Builtin Tools and Commands
 
@@ -94,11 +140,15 @@ Go, or golang is a programming language that has the aim of making systems and n
 	    version     print Go version
 	    vet         run go tool vet on packages
 
-* Lets download and install a go program
-
-    sudo apt-get install -y libjack0 libjack-dev portaudio19-dev mesa-common-dev freeglut3-dev libxrandr-dev libxcursor-dev libxinerama-dev libxi-dev
-	go get github.com/fogleman/nes
-
 * Some Code
 
 .play ex.go
+
+* Advanced Notes
+
+*Basic*Features*
+
+- Compiles To Machine Code
+- Is garbage collected
+- Builtin Primatives for Concurrency (channels)
+- Has interfaces and structs like C++ but its not really object oriented

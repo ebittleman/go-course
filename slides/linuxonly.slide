@@ -1,0 +1,9 @@
+Linux Stuff
+18 June 2015
+
+Eric Bittleman
+
+* Lets download and install a go program
+
+    sudo apt-get install -y libjack0 libjack-dev portaudio19-dev mesa-common-dev freeglut3-dev libxrandr-dev libxcursor-dev libxinerama-dev libxi-dev
+    go get github.com/fogleman/nes
