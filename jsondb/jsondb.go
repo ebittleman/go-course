@@ -43,7 +43,7 @@ func WriteTable(name string, table interface{}) error {
 		return err
 	}
 
-	return ioutil.WriteFile(getTableFile(name), data, 0)
+	return ioutil.WriteFile(getTableFile(name), data, 0644)
 }
 
 func getTableFile(name string) string {

@@ -3,12 +3,17 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>{{ title .Title }}</title>
+    <title>{{ .Title | title }}</title>
     <link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    {{ if .Styles }}{{ .Styles }}{{ end }}
 </head>
-<body class="container">
-    {{ .Content }}
+<body>
+{{ template "navigation.html" }}
+	<div class="container">
+		{{ .Content }}
+	</div>
     <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
     <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    {{ if .Scripts }}{{ .Scripts }}{{ end }}
 </body>
 </html>
