@@ -8,7 +8,7 @@
     {{ if .Styles }}{{ .Styles }}{{ end }}
 </head>
 <body>
-{{ template "navigation.html" }}
+{{ template "navigation.html" . }}
 	<div class="container">
 		{{ .Content }}
 	</div>

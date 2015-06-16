@@ -12,8 +12,8 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="/blog">Home</a></li>
-            <li><a href="/blog/new">New Post</a></li>
+            <li class="{{if eq .Page "home"}}active{{ end }}"><a href="/blog">Home</a></li>
+            <li class="{{if eq .Page "new"}}active{{ end }}"><a href="/blog/new">New Post</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>

@@ -1,7 +1,8 @@
 {{ define "article" }}
 <div class="row article">
 	<div class="row">
-		<div class="col-xs-12">{{ .Title | html }}</div>
+		<div class="col-xs-6">{{ .Title | html | title }}</div>
+		<div class="col-xs-6">{{ .Created | date }}</div>
 	</div>
 	<div class="row">
 		<div class="col-xs-12">

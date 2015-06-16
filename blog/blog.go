@@ -4,8 +4,10 @@ import (
 	"html"
 	"log"
 	"net/http"
+	"sort"
 	"strings"
 	"text/template"
+	"time"
 
 	"github.com/ebittleman/go-course/jsondb"
 	"github.com/ebittleman/go-course/view"
@@ -15,11 +17,6 @@ const (
 	TableName      = "articles"
 	LayoutTemplate = "layout.html"
 )
-
-type Article struct {
-	Title   string `json:"title"`
-	Content string `json:"content"`
-}
 
 var cachedTemplates *template.Template
 
@@ -40,7 +37,9 @@ func init() {
 			map[string]interface{}{
 				"title": strings.Title,
 				"html":  html.EscapeString,
-				"if":    view.If,
+				"empty": view.Empty,
+				"date":  view.DateFormat("01/02/06, 03:04PM"),
+				"eq":    view.Equals,
 			},
 		).ParseGlob("./blog/templates/*.html"),
 	)
@@ -51,6 +50,7 @@ func init() {
 }
 
 func RootBlogHandler(resp http.ResponseWriter, req *http.Request) {
+	sort.Sort(ByDate(articles))
 	content := view.NewViewModel(
 		"summary.html",
 		view.Vars{
@@ -61,7 +61,7 @@ func RootBlogHandler(resp http.ResponseWriter, req *http.Request) {
 	view.RenderViewModel(
 		resp,
 		cachedTemplates,
-		newLayout("My Articles").
+		newLayout("My Articles", "home").
 			AddChild(content, "Content"),
 	)
 
@@ -84,7 +84,7 @@ func NewBlogHandler(resp http.ResponseWriter, req *http.Request) {
 	view.RenderViewModel(
 		resp,
 		cachedTemplates,
-		newLayout("My Articles").
+		newLayout("New Articles", "new").
 			AddChild(content, "Content").
 			AddChild(footerScript, "Scripts"),
 	)
@@ -100,6 +100,7 @@ func CreateBlogHandler(resp http.ResponseWriter, req *http.Request) {
 	article := &Article{
 		Title:   title,
 		Content: content,
+		Created: time.Now(),
 	}
 
 	articles = append(articles, article)
@@ -109,11 +110,12 @@ func CreateBlogHandler(resp http.ResponseWriter, req *http.Request) {
 	writeArticles()
 }
 
-func newLayout(title string) *view.ViewModel {
+func newLayout(title string, page string) *view.ViewModel {
 	return view.NewViewModel(
 		LayoutTemplate,
 		view.Vars{
-			"Title": "rendered output",
+			"Title": title,
+			"Page":  page,
 		},
 	)
 }
