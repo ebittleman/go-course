@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,7 +10,7 @@
     <h1>New Product</h1>
     <div class="row">
         <div class="col-xs-4">
-            <form action="/api/v1/product" method="POST" enctype="application/x-www-form-urlencoded" role="form">
+            <form id="form" action="/api/v1/product" method="POST" enctype="application/x-www-form-urlencoded" role="form">
                 <div class="form-group">
                     <label for="name">Name</label>
                     <input name="name" type="text" id="name" class="form-control">
@@ -26,6 +25,31 @@
             </form>
         </div>
     </div>
-    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js">
+    <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+    $(function(){
+        var $form = $('#form');
+        
+        $form.submit(function(e){
+            e.stopPropagation();
+
+            $.post(
+                $form.attr('action'),
+                $form.serializeArray(),
+                function(resp){
+                    console.log('success');
+                    console.log(arguments);
+                },
+                'json'
+            ).fail(function(){
+                console.log('fail');
+                console.log(arguments);
+            });
+
+            return false;
+        });    
+    });
+    </script>
 </body>
 </html>

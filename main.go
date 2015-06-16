@@ -7,6 +7,9 @@ import (
 	"log"
 	"net/http"
 
+	_ "golang.org/x/tools/present"
+
+	_ "github.com/ebittleman/go-course/blog"
 	_ "github.com/ebittleman/go-course/cart"
 	"github.com/ebittleman/go-course/jsondb"
 )
