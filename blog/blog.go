@@ -38,7 +38,7 @@ func init() {
 				"title": strings.Title,
 				"html":  html.EscapeString,
 				"empty": view.Empty,
-				"date":  view.DateFormat("01/02/06, 03:04PM"),
+				"date":  view.DateFormat("01/02/06, 03:04PM", time.Local),
 				"eq":    view.Equals,
 			},
 		).ParseGlob("./blog/templates/*.html"),
