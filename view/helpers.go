@@ -5,10 +5,6 @@ import (
 	"time"
 )
 
-func Equals(a, b interface{}) bool {
-	return a == b
-}
-
 func Empty(item interface{}) bool {
 	val := reflect.ValueOf(item)
 	return val.Len() < 1

@@ -7,8 +7,14 @@
 {{ end }}
 {{ if empty .Articles }}
 <div class="row">
-	<div class="col-xs-4">
-		<a href="/blog/new">New Post</a>
+	<div class="col-xs-12" style="text-align: center">
+		<p style="padding: 3px;">No Posts Found</p>
+	</div>
+</div>
+<div class="row">
+	<div class="col-xs-12" style="text-align: center">
+		<a class="btn btn-info" href="/blog/new"
+		><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> New Post</a>
 	</div>
 </div>
 {{ end }}

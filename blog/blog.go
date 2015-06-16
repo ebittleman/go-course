@@ -1,12 +1,9 @@
 package blog
 
 import (
-	"html"
 	"log"
 	"net/http"
 	"sort"
-	"strings"
-	"text/template"
 	"time"
 
 	"github.com/ebittleman/go-course/jsondb"
@@ -17,8 +14,6 @@ const (
 	TableName      = "articles"
 	LayoutTemplate = "layout.html"
 )
-
-var cachedTemplates *template.Template
 
 var articles []*Article
 
@@ -32,17 +27,7 @@ func init() {
 		log.Println(err)
 	}
 
-	cachedTemplates = template.Must(
-		template.New("root").Funcs(
-			map[string]interface{}{
-				"title": strings.Title,
-				"html":  html.EscapeString,
-				"empty": view.Empty,
-				"date":  view.DateFormat("01/02/06, 03:04PM", time.Local),
-				"eq":    view.Equals,
-			},
-		).ParseGlob("./blog/templates/*.html"),
-	)
+	view.RegisterGlob("./blog/templates/*.html")
 
 	http.HandleFunc("/blog", RootBlogHandler)
 	http.HandleFunc("/blog/new", NewBlogHandler)
@@ -60,20 +45,15 @@ func RootBlogHandler(resp http.ResponseWriter, req *http.Request) {
 
 	view.RenderViewModel(
 		resp,
-		cachedTemplates,
 		newLayout("My Articles", "home").
 			AddChild(content, "Content"),
 	)
-
-	writeArticles()
 }
 
 func NewBlogHandler(resp http.ResponseWriter, req *http.Request) {
 	content := view.NewViewModel(
 		"creator.html",
-		view.Vars{
-			"Articles": articles,
-		},
+		nil,
 	)
 
 	footerScript := view.NewViewModel(
@@ -83,16 +63,14 @@ func NewBlogHandler(resp http.ResponseWriter, req *http.Request) {
 
 	view.RenderViewModel(
 		resp,
-		cachedTemplates,
 		newLayout("New Articles", "new").
 			AddChild(content, "Content").
 			AddChild(footerScript, "Scripts"),
 	)
-
-	writeArticles()
 }
 
 func CreateBlogHandler(resp http.ResponseWriter, req *http.Request) {
+	defer writeArticles()
 
 	title := req.FormValue("title")
 	content := req.FormValue("content")
@@ -107,7 +85,6 @@ func CreateBlogHandler(resp http.ResponseWriter, req *http.Request) {
 
 	resp.Write([]byte("\"ok\""))
 
-	writeArticles()
 }
 
 func newLayout(title string, page string) *view.ViewModel {
