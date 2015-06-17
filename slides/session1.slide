@@ -33,11 +33,30 @@ Go, or golang is a programming language that has the aim of making systems and n
 - Presentations
 - ... pretty much anything
 
-*What*are*we*going*to*make*today*
+* 
 
-Plan A: A very simple twitter clone
+** What are we doing today?
 
-Plan B: A website that sells stuff
+*** Schedule
+
+- Start off by getting me up to speed! How's camp going?
+- Learn how to use some tools to write Go Code
+- Go over the rules (syntax) of the Go programming language
+- You're going to help me add some new feature to my Blog Program
+
+.image ./images/golang-logo.png _ 225
+
+* 
+
+** How's it going?
+
+*** Tell me about camp
+
+What's your favorite project so far?
+
+What do you think we are going to learn about today?
+
+.image ./images/golang-logo.png _ 225
 
 * Tools We Are Going To Be Using
 
@@ -54,6 +73,18 @@ Features
 - Auto Formatting - Makes sure your code is well formatted and readable 
 - Automatically Imports Packages - automaically detects and imports go packages
 
+*  Git Bash
+
+.image ./images/git-logo.png _ 225
+
+*Used*to*run*the*GO*SDK*and*use*GIT*
+
+Features
+
+- Windows version of the BASH Shell
+- Auto Completion of Commands
+- Shows Extra Git Information
+
 * Go SDK
 
 .image ./images/golang-logo.png _ 225
@@ -67,53 +98,79 @@ Features
 - Runs Test
 - Downloads Dependencies
 
-*  Git Bash
+* GO TO
+** Lets get started
 
-.image ./images/git-logo.png _ 225
+.link https://gocamp-2015.appspot.com/ https://gocamp-2015.appspot.com/
 
-*Used*to*run*the*GO*SDK*and*use*GIT*
+* Hello World
+** Your first go program
 
-Features
+.play code/helloworld.go
 
-- Windows version of the BASH Shell
-- Auto Completion of Commands
-- Shows Extra Git Information
+* 
+** The Breakdown
+*** func main()
+
+.code code/helloworld.go HLFUNC
+
+*main()* is a special function that tells Go where your program starts
+
+It doesn't take any input and does not provide any output
+
+* What's a function?
+
+* This is a function
+
+.play code/add.go /^func Add/,/^}/
+
+A function is a piece of code that takes some sort of input, operates on it, then returns the result.
+
+*How*To*Make*A*Function*In*Go*
+
+1. Start with the *func* keyword
+2. Give it a name, here we used *Add*
+3. List the input arguments inside of parenthesis, here we have *(a*int,*b*int)*
+4. Tell Go what type of data your function is going to return, in this case it's an, *int*
+5. Code up the body in between some curlies *{*}*
+
+* 
+** The Breakdown (continued)
+*** fmt.Println("Hello World")
+
+.code code/helloworld.go HLFMT
+
+* 
+** The Breakdown (continued)
+*** Package
+
+  package main
+
+A package lets you group logically similar functionality into an easy to share library
 
 
-* Product Ideas From Last Week (Part 1)
 
-- Voice Commanding Headphone - wearable tech, can do things like change current song
-  implementation 
-    - mobile app connected to language processing apis and natural language processing
-- Customised shoe design
-  implementation 
-    - website that uses imagemagick to overlay color/themes onto stock show models
-- Phone tutorial services
-  implementation
-    - Table of Contents of Features to Win
-    - Phone module emulation with wizards to guide students
 
-* Product Ideas From Last Week (Part 2)
-- Video Game Emulator or Streaming Services
-  implementation
-    - to complex
-- Headphones that connect directly to music stream services
-  implementation
-    - bluetooth drived device connects to mobile, possible `brillo` ran device
-- Phone projector
-  implementaion
-   - pizza hut box projector
 
-*Top*Themes*
- - wearable tech with music
 
-* Product Ideas, Round 2
 
-- heated flip flops
-- wearable tech, headphones with voice control
-- portable coffee machine
-- app to meetup and communicate and sell to customers
-- brick and mortor store with musician merchandise
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 * Builtin Tools and Commands
 
@@ -139,10 +196,6 @@ Features
 	    tool        run specified go tool
 	    version     print Go version
 	    vet         run go tool vet on packages
-
-* Some Code
-
-.play ex.go
 
 * Advanced Notes
 
