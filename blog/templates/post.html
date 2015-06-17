@@ -11,7 +11,7 @@
 		<div class="col-xs-6">Created: {{ .Created | date }}</div>
 		<div class="col-xs-6" style="text-align: right;">
 			<a class="btn btn-sm btn-default" href="/blog/edit/{{.Id}}">Edit Post</a>
-			<a class="btn btn-sm btn-default" href="/blog/delete/{{.Id}}">Delete Post</a>
+			<a class="btn btn-sm btn-default alert-danger" href="/blog/delete/{{.Id}}">Delete Post</a>
 		</div>
 	</div>
 </div>
