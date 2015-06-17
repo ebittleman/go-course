@@ -7,9 +7,17 @@ handlers:
 - url: /static
   static_dir: present/static
   application_readable: true
+  secure: always
 - url: /(.*\.(ico))$
   static_files: present/static/\1
   upload: present/static/.*\.(ico)
   application_readable: true
+  secure: always
+- url: /robots.txt
+  static_files: blog/static/robots.txt
+  upload: blog/static/.*\.(txt)
+  application_readable: true
+  secure: always
 - url: /.*
   script: _go_app
+  secure: always

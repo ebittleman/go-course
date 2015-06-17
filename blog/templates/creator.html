@@ -1,17 +1,31 @@
 <div class="row">
     <div class="col-xs-12 col-md-6">
-        <form id="form" action="/blog/create" method="POST" enctype="application/x-www-form-urlencoded" role="form">
+        <form 
+            id="form" 
+            action="{{if .Post}}/blog/update/{{.Post.Id}}{{else}}/blog/create{{end}}" 
+            method="POST" 
+            enctype="application/x-www-form-urlencoded" 
+            role="form"
+        >
             <div class="form-group">
                 <label for="title">Title</label>
-                <input name="title" type="text" id="title" class="form-control">
+                <input name="title" type="text" id="title" class="form-control" value="{{if .Post}}{{.Post.Title | html }}{{end}}">
             </div>
             <div class="form-group">
                 <label for="content">Content</label>
-                <textarea style="height: 250px;" name="content" class="form-control" id="content"></textarea>
+                <textarea style="height: 250px;" name="content" class="form-control" id="content">{{if .Post}}{{.Post.Content | html }}{{end}}</textarea>
             </div>
-            <div class="row">
+            <div id="errorMsg" class="alert alert-danger hidden" role="alert">
+              <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+              <span class="sr-only">Error:</span>
+              <span id="errorTxt"></span>
+            </div>
+            <div id="btns" class="row">
                 <span class="col-xs-6"><a href="/blog" class="btn btn-default">Cancel</a></span>
                 <span class="col-xs-6" style="text-align: right;"><button type="submit" class="btn btn-primary">Save Post</button></span>
+            </div>
+            <div id="loading" class="row hidden">
+                <span class="col-xs-12 text-center alert-info" style="font-size: 55px"><i class="fa fa-spinner fa-pulse"></i></span>
             </div>
             <div class="form-group">
             </div>
@@ -22,22 +36,35 @@
 <script type="text/javascript">
 	$(function(){
         var $form = $('#form');
+        var $errorMsg = $('#errorMsg');
+        var $errorTxt = $('#errorTxt');
+        var $btns = $('#btns');
+        var $loading = $('#loading');
 
         $form.submit(function(e){
             e.stopPropagation();
+            // clear error message
+            $errorMsg.addClass('hidden');
+            $errorTxt.html('');
 
+            $btns.addClass('hidden');
+            $loading.removeClass('hidden');
+            
             $.post(
                 $form.attr('action'),
                 $form.serializeArray(),
                 function(resp){
-                    console.log('success');
-                    console.log(arguments);
                     window.location.href = "/blog";
                 },
                 'json'
-            ).fail(function(){
-                console.log('fail');
+            ).fail(function(req, err, errorTxt){
+                // show server error message
+                $errorTxt.html(errorTxt);
+                $errorMsg.removeClass('hidden');
                 console.log(arguments);
+            }).always(function(){
+                $btns.removeClass('hidden');
+                $loading.addClass('hidden');
             });
 
             return false;

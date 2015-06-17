@@ -1,0 +1,18 @@
+<div class="row post">
+	<h2>{{ .Title | html | title }}</h2>
+	<div class="row">
+		<div class="col-xs-12">
+			<pre
+				style="word-break: normal; word-wrap: normal;"
+			><code>{{ .Content | html }}</code></pre>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-6">Created: {{ .Created | date }}</div>
+		<div class="col-xs-6" style="text-align: right;">
+			<a class="btn btn-sm btn-default" href="/blog/edit/{{.Id}}">Edit Post</a>
+			<a class="btn btn-sm btn-default" href="/blog/delete/{{.Id}}">Delete Post</a>
+		</div>
+	</div>
+</div>
+<hr>

@@ -3,7 +3,10 @@ package blog
 import (
 	"log"
 	"net/http"
+	"path"
 	"sort"
+	"strconv"
+	"sync"
 	"time"
 
 	"github.com/ebittleman/go-course/jsondb"
@@ -11,46 +14,55 @@ import (
 )
 
 const (
-	TableName      = "articles"
+	TableName      = "posts"
 	LayoutTemplate = "layout.html"
 )
 
-var articles []*Article
+var postsTable *PostTable
+var lock *sync.Mutex
 
 func init() {
 
-	articles = make([]*Article, 0, 50)
+	// initialize data
+	postsTable = NewPostTable()
+	lock = &sync.Mutex{}
 
-	err := jsondb.LoadTable(TableName, &articles)
+	err := jsondb.LoadTable(TableName, postsTable)
 
 	if err != nil {
 		log.Println(err)
 	}
 
+	// register user interface elements
 	view.RegisterGlob("./blog/templates/*.html")
 
-	http.HandleFunc("/blog", RootBlogHandler)
-	http.HandleFunc("/blog/new", NewBlogHandler)
-	http.HandleFunc("/blog/create", CreateBlogHandler)
+	// register url paths and handlers
+	http.HandleFunc("/blog", ListPostsHandler)
+	http.HandleFunc("/blog/new", NewPostFormHandler)
+	http.HandleFunc("/blog/create", CreatePostHandler)
+	http.HandleFunc("/blog/edit/", EditPostFormHandler)
+	http.HandleFunc("/blog/update/", UpdatePostFormHandler)
+	http.HandleFunc("/blog/delete/", DeletePostFormHandler)
 }
 
-func RootBlogHandler(resp http.ResponseWriter, req *http.Request) {
-	sort.Sort(ByDate(articles))
+func ListPostsHandler(resp http.ResponseWriter, req *http.Request) {
+	sort.Sort(ByDate(postsTable.Posts))
+
 	content := view.NewViewModel(
 		"summary.html",
 		view.Vars{
-			"Articles": articles,
+			"Posts": postsTable.Posts,
 		},
 	)
 
 	view.RenderViewModel(
 		resp,
-		newLayout("My Articles", "home").
+		newLayout("My Posts", "posts").
 			AddChild(content, "Content"),
 	)
 }
 
-func NewBlogHandler(resp http.ResponseWriter, req *http.Request) {
+func NewPostFormHandler(resp http.ResponseWriter, req *http.Request) {
 	content := view.NewViewModel(
 		"creator.html",
 		nil,
@@ -63,28 +75,124 @@ func NewBlogHandler(resp http.ResponseWriter, req *http.Request) {
 
 	view.RenderViewModel(
 		resp,
-		newLayout("New Articles", "new").
+		newLayout("New Post", "new").
 			AddChild(content, "Content").
 			AddChild(footerScript, "Scripts"),
 	)
 }
 
-func CreateBlogHandler(resp http.ResponseWriter, req *http.Request) {
-	defer writeArticles()
+func CreatePostHandler(resp http.ResponseWriter, req *http.Request) {
+	lock.Lock()
+	defer lock.Unlock()
+	defer writePosts()
 
 	title := req.FormValue("title")
 	content := req.FormValue("content")
 
-	article := &Article{
+	post := &Post{
+		Id:      postsTable.NextId,
 		Title:   title,
 		Content: content,
 		Created: time.Now(),
 	}
 
-	articles = append(articles, article)
+	postsTable.Posts = append(postsTable.Posts, post)
+	postsTable.NextId += 1
 
 	resp.Write([]byte("\"ok\""))
+}
 
+func EditPostFormHandler(resp http.ResponseWriter, req *http.Request) {
+
+	_, id := path.Split(req.RequestURI)
+
+	postId, err := strconv.ParseInt(id, 10, 64)
+
+	if err != nil {
+		http.Error(resp, err.Error(), http.StatusBadRequest)
+		return
+	}
+
+	post, _ := FindPostById(postsTable.Posts, int(postId))
+
+	if post == nil {
+		http.Error(resp, "Post Not Found", http.StatusNotFound)
+		return
+	}
+
+	content := view.NewViewModel(
+		"creator.html",
+		view.Vars{
+			"Post": post,
+		},
+	)
+
+	footerScript := view.NewViewModel(
+		"creatorScript",
+		nil,
+	)
+
+	view.RenderViewModel(
+		resp,
+		newLayout("New Post", "new").
+			AddChild(content, "Content").
+			AddChild(footerScript, "Scripts"),
+	)
+}
+
+func UpdatePostFormHandler(resp http.ResponseWriter, req *http.Request) {
+	lock.Lock()
+	defer lock.Unlock()
+	defer writePosts()
+
+	_, id := path.Split(req.RequestURI)
+
+	postId, err := strconv.ParseInt(id, 10, 64)
+
+	if err != nil {
+		http.Error(resp, err.Error(), http.StatusBadRequest)
+		return
+	}
+
+	post, _ := FindPostById(postsTable.Posts, int(postId))
+
+	if post == nil {
+		http.Error(resp, "Post Not Found", http.StatusNotFound)
+		return
+	}
+
+	title := req.FormValue("title")
+	content := req.FormValue("content")
+
+	post.Title = title
+	post.Content = content
+
+	resp.Write([]byte("\"ok\""))
+}
+
+func DeletePostFormHandler(resp http.ResponseWriter, req *http.Request) {
+	lock.Lock()
+	defer http.Redirect(resp, req, "/blog", http.StatusTemporaryRedirect)
+	defer lock.Unlock()
+	defer writePosts()
+
+	_, id := path.Split(req.RequestURI)
+
+	postId, err := strconv.ParseInt(id, 10, 64)
+
+	if err != nil {
+		log.Println(err)
+		return
+	}
+
+	post, i := FindPostById(postsTable.Posts, int(postId))
+
+	if post == nil {
+		log.Println("Post Not Found")
+		return
+	}
+
+	postsTable.Posts = append(postsTable.Posts[:i], postsTable.Posts[i+1:]...)
 }
 
 func newLayout(title string, page string) *view.ViewModel {
@@ -97,6 +205,6 @@ func newLayout(title string, page string) *view.ViewModel {
 	)
 }
 
-func writeArticles() {
-	jsondb.WriteTable(TableName, articles)
+func writePosts() {
+	jsondb.WriteTable(TableName, postsTable)
 }

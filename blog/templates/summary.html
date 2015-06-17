@@ -1,11 +1,11 @@
 <div class="row">
 	<h1>Posts</h1>
 </div>
-<div class="container articles">
-{{ range $article := .Articles }}
-{{ with $article }}{{ template "article" . }}{{ end }}
+<div class="container posts">
+{{ range $post := .Posts }}
+{{ template "post.html" $post }}
 {{ end }}
-{{ if empty .Articles }}
+{{ if empty .Posts }}
 <div class="row">
 	<div class="col-xs-12" style="text-align: center">
 		<p style="padding: 3px;">No Posts Found</p>
