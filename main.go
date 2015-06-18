@@ -24,19 +24,7 @@ func init() {
 	// register user interface elements
 	view.RegisterGlob("./templates/*.html")
 
-	http.HandleFunc("/", func(resp http.ResponseWriter, req *http.Request) {
-		view.RenderViewModel(
-			resp,
-			view.NewViewModel(
-				"layout.html",
-				view.Vars{
-					"Title":   "Code Camp 2015",
-					"Page":    "home",
-					"Content": "<h1>Welcome!</h1>",
-				},
-			),
-		)
-	})
+	http.HandleFunc("/", ShowHomePage)
 }
 
 func main() {
@@ -49,4 +37,18 @@ func main() {
 
 	log.Printf("Running Web Server on %s\n", *httpFlag)
 	log.Fatal(http.ListenAndServe(*httpFlag, nil))
+}
+
+func ShowHomePage(resp http.ResponseWriter, req *http.Request) {
+	view.RenderViewModel(
+		resp,
+		view.NewViewModel(
+			"layout.html",
+			view.Vars{
+				"Title":   "Code Camp 2015",
+				"Page":    "home",
+				"Content": "<h1>Welcome!</h1>",
+			},
+		),
+	)
 }
