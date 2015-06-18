@@ -171,19 +171,19 @@ What's this thing doing?
 
 * Lets all make a "Hello World!" program
 
-* Todo: Insert screen shot of creating new folder in GOPATH/src
+* 
 ** Step 1 - Start a new project
 
-* Todo: Insert screen shot of adding project to sublime
+* 
 ** Step 2 - Add the project to Sublime Text
 
-* Todo: Insert Screen Shot of making a new file
+* 
 ** Step 3 - Add a main.go file to project
 
-* Todo: no screen shot
+* 
 ** Step 4 - Write the program it with me
 
-* Todo: screen shot of cd'ing to project, then running go run main.go
+* 
 ** Step 5 - Lets try it out!
 
 * End of Part 1. Questions?
@@ -209,15 +209,21 @@ Other notable types but not that important to cover today
 * 
 ** Bool ... (true or false)
 
+*Challenge*: Edit the code to make *falseBool* true and *trueBool* false
+
 .play code/types/bool.go /^func BoolExample/,/^}/
 
 * 
 ** Int ... Negative and Positive Integers
 
+*Challenge*: Make one of the integers out of range and break the code!
+
 .play code/types/int.go /var int8Max /,/9223372036854775808/
 
 * 
 ** Unsigned Integers (uint) ... Only Positive Integers
+
+*Challenge*: Make one of the integers negative and break the code!
 
 .play code/types/uint.go /var uint8Max/,/uint64 = 0$/
 
@@ -228,6 +234,8 @@ Other notable types but not that important to cover today
 
 * 
 ** Strings ... like text messages without emojis
+
+*Challenge*: Edit the code to have the second Printf output "5 is number Five"
 
 .play code/types/string.go /^func StringExample/,/^}/
 
@@ -251,17 +259,19 @@ A data structure is a specialized format for organizing and storing data.
 - arrays
 - maps
 
-* 
-** Arrays
+* Arrays
 
 An array is a simple ordered list of values of a single type
 
+*Challenge*: Add the day I missed to the array
+
 .play code/types/array.go /^func ArrayExample/,/^}/
 
-* 
-** Maps
+* Maps
 
 A *map* is a lot like an array, but with a *map* you can set what type the index is
+
+*Challenge*: Edit the code to add the day I missed
 
 .play code/types/map.go /^func MapExample/,/^}/
 
@@ -271,17 +281,21 @@ A *map* is a lot like an array, but with a *map* you can set what type the index
 
 The *if* and *else* keywords are a conditional control statement that allows you to make decisions to do one thing or another
 
+*Challenge*: Edit the code to make it print "This statement is true"
+
 .play code/if.go  /^func main/,/^}/
 
 * for loop
 
 The *for* loop control statement that allows you to run the same code many times over changing variables
 
+*Challenge*: Have the loop print up to 10
+
 .play code/for/for1.go  /^func main/,/^}/
 
-* for loop (continued)
+* for loop
 
-Here's how you read an array
+*Challenge*: Add the Sun to the array and have it print out
 
 .play code/for/for2.go  /^func main/,/^}/
 
@@ -296,5 +310,59 @@ Here's how you read an array when you might not know the how many items are in i
 Here's a nice short hand way of looping over an array (or map)
 
 .play code/for/for4.go  /^func main/,/^}/
+
+* 
+** Operators
+
+Operators are symbols that allow you to do some sort of basic functionality on variables
+
+They can do things like basic aritmitic, or logical operations
+
+* Arithmetic Operators
+
+*+*
+  
+  adds numbers, or when used with strings it combines (concatenates) them
+
+*-*
+  
+  subtracts numbers
+  
+***
+  
+  multiplies numbers
+  
+*/* 
+  
+  divides numbers
+
+* Arithmetic Example
+
+.play code/operators/arithmetic.go  /^func main/,/^}/
+
+* Logical Operators
+
+These are typically used in if statements
+
+*==*
+
+  Evaluates to true if two values are equal
+
+*!=*
+  
+  Evaluates to true if two vales are not equal
+
+*>*
+  
+  Evaluates to true if the value on the right is greater than the value on the left
+
+*<*
+  
+  Evaluates to true if the value on the right is less than the value on the left
+
+* Logical Example
+*Challenge*: Edit the code to make all the statements true
+
+.play code/operators/logical.go  /^func main/,/^}/
 
 * End of Part 2. Questions?

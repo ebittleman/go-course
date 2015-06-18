@@ -11,7 +11,6 @@ func main() {
 func ArrayExample() {
 	var daysOfWeek []string = []string{
 		"Sunday",
-		"Monday",
 		"Tuesday",
 		"Wednesday",
 		"Thursday",

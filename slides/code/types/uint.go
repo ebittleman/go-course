@@ -12,16 +12,13 @@ func UintExample() {
 	var uint8Max uint8 = 255
 	var uint8Min uint8 = 0
 
-	// ~65 Thousand - Kilo
-	var uint16Max uint16 = 65535
+	var uint16Max uint16 = 65535 // ~65 Thousand - Kilo
 	var uint16Min uint16 = 0
 
-	// ~4 Billion - Giga
-	var uint32Max uint32 = 4294967295
+	var uint32Max uint32 = 4294967295 // ~4 Billion - Giga
 	var uint32Min uint32 = 0
 
-	// ~18 Quintillion - Exa
-	var uint64Max uint64 = 18446744073709551615
+	var uint64Max uint64 = 18446744073709551615 // ~18 Quintillion - Exa
 	var uint64Min uint64 = 0
 
 	PrintTypeAndValue(uint8Max)
