@@ -204,7 +204,7 @@ Other notable types but not that important to cover today
 
 - byte (an alias of uint8)
 - rune
-- complex64 complex128 (imaginary numbers, we're gonna skip this)
+- complex64 complex128 (imaginary numbers)
 
 * 
 ** Bool ... (true or false)
@@ -234,3 +234,67 @@ Other notable types but not that important to cover today
 For more details on formatting visit
 
 .link https://golang.org/pkg/fmt/ https://golang.org/pkg/fmt/
+
+* Variables
+
+A variable is a value that can change.
+
+There are a number of ways a variable can be declared and initialized in Go
+
+.play code/variables.go /^func main/,/^}/
+
+* 
+** Basic Data Structures
+
+A data structure is a specialized format for organizing and storing data. 
+
+- arrays
+- maps
+
+* 
+** Arrays
+
+An array is a simple ordered list of values of a single type
+
+.play code/types/array.go /^func ArrayExample/,/^}/
+
+* 
+** Maps
+
+A *map* is a lot like an array, but with a *map* you can set what type the index is
+
+.play code/types/map.go /^func MapExample/,/^}/
+
+* Control Statements
+
+* if/else
+
+The *if* and *else* keywords are a conditional control statement that allows you to make decisions to do one thing or another
+
+.play code/if.go  /^func main/,/^}/
+
+* for loop
+
+The *for* loop control statement that allows you to run the same code many times over changing variables
+
+.play code/for/for1.go  /^func main/,/^}/
+
+* for loop (continued)
+
+Here's how you read an array
+
+.play code/for/for2.go  /^func main/,/^}/
+
+* for loop with the len function
+
+Here's how you read an array when you might not know the how many items are in it
+
+.play code/for/for3.go  /^func main/,/^}/
+
+* for loop with the range function
+
+Here's a nice short hand way of looping over an array (or map)
+
+.play code/for/for4.go  /^func main/,/^}/
+
+* End of Part 2. Questions?

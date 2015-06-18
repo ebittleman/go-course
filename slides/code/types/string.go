@@ -16,7 +16,3 @@ func StringExample() {
 
 	fmt.Printf(formatExample, "Five", 5)
 }
-
-func PrintTypeAndValue(v interface{}) {
-
-}
