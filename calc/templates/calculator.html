@@ -147,7 +147,7 @@
                 'json'
             ).fail(function(req, err, errorTxt){
                 // show server error message
-                $errorTxt.html(errorTxt);
+                $errorTxt.html(req.responseText);
                 $errorMsg.removeClass('hidden');
                 console.log(arguments);
             });
