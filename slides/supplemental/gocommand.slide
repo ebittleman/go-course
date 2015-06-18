@@ -1,0 +1,38 @@
+Go Command
+18 June 2015
+
+Eric Bittleman
+
+* Builtin Tools and Commands
+
+- go - Manages go workspaces. Downloads, Compiles, Tests, Runs, and Installs Go projects
+
+	Usage:
+
+		go command [arguments]
+
+	The commands are:
+
+	    build       compile packages and dependencies
+	    clean       remove object files
+	    env         print Go environment information
+	    fix         run go tool fix on packages
+	    fmt         run gofmt on package sources
+	    generate    generate Go files by processing source
+	    get         download and install packages and dependencies
+	    install     compile and install packages and dependencies
+	    list        list packages
+	    run         compile and run Go program
+	    test        test packages
+	    tool        run specified go tool
+	    version     print Go version
+	    vet         run go tool vet on packages
+
+* Advanced Notes
+
+*Basic*Features*
+
+- Compiles To Machine Code
+- Is garbage collected
+- Builtin Primatives for Concurrency (channels)
+- Has interfaces and structs like C++ but its not really object oriented

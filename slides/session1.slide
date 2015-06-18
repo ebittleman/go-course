@@ -23,7 +23,7 @@ I have been developing software professionally for the past 8 years. 6 of which 
 
 * What is Go?
 
-Go, or golang is a programming language that has the aim of making systems and network programming easier.
+Go, or golang is an open source programming language that has the aim of making systems and network programming easier.
 
 *What*can*you*make*with*it?*
 
@@ -34,15 +34,13 @@ Go, or golang is a programming language that has the aim of making systems and n
 - ... pretty much anything
 
 * 
-
 ** What are we doing today?
-
 *** Schedule
 
-- Start off by getting me up to speed! How's camp going?
-- Learn how to use some tools to write Go Code
-- Go over the rules (syntax) of the Go programming language
-- You're going to help me add some new feature to my Blog Program
+- Warm up, Lets get our laptops setup!
+- Part 1 - Hello World!
+- Part 2 - Dig in to the rules (syntax) of the Go programming language
+- Part 3 - You're going to help me add some new feature to my Blog Program
 
 .image ./images/golang-logo.png _ 225
 
@@ -53,8 +51,6 @@ Go, or golang is a programming language that has the aim of making systems and n
 *** Tell me about camp
 
 What's your favorite project so far?
-
-What do you think we are going to learn about today?
 
 .image ./images/golang-logo.png _ 225
 
@@ -99,7 +95,7 @@ Features
 - Downloads Dependencies
 
 * GO TO
-** Lets get started
+** Part 1 - Hello World!
 
 .link https://gocamp-2015.appspot.com/ https://gocamp-2015.appspot.com/
 
@@ -108,8 +104,20 @@ Features
 
 .play code/helloworld.go
 
+Go ahead, click run
+
 * 
 ** The Breakdown
+*** Packages
+
+.code code/helloworld.go HLPKG
+
+A *package* lets you group logically similar functionality into an easy to share library
+
+*package*main* is a special package that Go looks for so that it can find *func*main()*
+
+* 
+** The Breakdown (continued)
 *** func main()
 
 .code code/helloworld.go HLFUNC
@@ -136,72 +144,29 @@ A function is a piece of code that takes some sort of input, operates on it, the
 
 * 
 ** The Breakdown (continued)
+*** import "fmt"
+
+.code code/helloworld.go HLIMPORT
+
+The *import* keyword lets Go know that you want to use some functionality found in another package
+
+Here we are importing *"fmt"* which has a lot of functions to help formatting strings
+
+* 
+** Quick Recap Before The Last Question
+
+1. What is the purpose of a package?
+
+2. How do we can we bring packages into our code?
+
+3. What is a function? 
+
+* 
+** The Breakdown (the finale)
 *** fmt.Println("Hello World")
 
 .code code/helloworld.go HLFMT
 
-* 
-** The Breakdown (continued)
-*** Package
+What's this thing doing?
 
-  package main
-
-A package lets you group logically similar functionality into an easy to share library
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-* Builtin Tools and Commands
-
-- go - Manages go workspaces. Downloads, Compiles, Tests, Runs, and Installs Go projects
-
-	Usage:
-
-		go command [arguments]
-
-	The commands are:
-
-	    build       compile packages and dependencies
-	    clean       remove object files
-	    env         print Go environment information
-	    fix         run go tool fix on packages
-	    fmt         run gofmt on package sources
-	    generate    generate Go files by processing source
-	    get         download and install packages and dependencies
-	    install     compile and install packages and dependencies
-	    list        list packages
-	    run         compile and run Go program
-	    test        test packages
-	    tool        run specified go tool
-	    version     print Go version
-	    vet         run go tool vet on packages
-
-* Advanced Notes
-
-*Basic*Features*
-
-- Compiles To Machine Code
-- Is garbage collected
-- Builtin Primatives for Concurrency (channels)
-- Has interfaces and structs like C++ but its not really object oriented
+* End of Part 1. Questions?

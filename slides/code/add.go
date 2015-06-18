@@ -1,3 +1,5 @@
+// +build !appengine OMIT
+
 package main
 
 import "fmt"
