@@ -169,4 +169,68 @@ Here we are importing *"fmt"* which has a lot of functions to help formatting st
 
 What's this thing doing?
 
+* Lets all make a "Hello World!" program
+
+* Todo: Insert screen shot of creating new folder in GOPATH/src
+** Step 1 - Start a new project
+
+* Todo: Insert screen shot of adding project to sublime
+** Step 2 - Add the project to Sublime Text
+
+* Todo: Insert Screen Shot of making a new file
+** Step 3 - Add a main.go file to project
+
+* Todo: no screen shot
+** Step 4 - Write the program it with me
+
+* Todo: screen shot of cd'ing to project, then running go run main.go
+** Step 5 - Lets try it out!
+
 * End of Part 1. Questions?
+
+* Part 2 - Lets Learn Go
+
+* Basic Types
+
+Go is a strongly typed language.
+
+- bool
+- int  int8  int16  int32  int64
+- uint uint8 uint16 uint32 uint64 uintptr
+- float32 float64
+- string
+
+Other notable types but not that important to cover today
+
+- byte (an alias of uint8)
+- rune
+- complex64 complex128 (imaginary numbers, we're gonna skip this)
+
+* 
+** Bool ... (true or false)
+
+.play code/types/bool.go /^func BoolExample/,/^}/
+
+* 
+** Int ... Negative and Positive Integers
+
+.play code/types/int.go /var int8Max /,/9223372036854775808/
+
+* 
+** Unsigned Integers (uint) ... Only Positive Integers
+
+.play code/types/uint.go /var uint8Max/,/uint64 = 0$/
+
+* 
+** Floats ... Positive and Negative Numbers with decimal points
+
+.play code/types/float.go /\/\/ Precision up to 8/,/float64 = 9223372036854775807$/
+
+* 
+** Strings ... like text messages without emojis
+
+.play code/types/string.go /^func StringExample/,/^}/
+
+For more details on formatting visit
+
+.link https://golang.org/pkg/fmt/ https://golang.org/pkg/fmt/
