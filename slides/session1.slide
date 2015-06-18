@@ -226,12 +226,12 @@ Other notable types but not that important to cover today
 
 *Challenge*: Make one of the integers negative and break the code!
 
-.play code/types/uint.go /var uint8Max/,/uint64 = 0$/
+.play code/types/uint.go /var uint8Max/,/uint64 = 0/
 
 * 
 ** Floats ... Positive and Negative Numbers with decimal points
 
-.play code/types/float.go /\/\/ Precision up to 8/,/float64 = 9223372036854775807$/
+.play code/types/float.go /\/\/ Precision up to 8/,/float64 = 9223372036854775807/
 
 * 
 ** Strings ... like text messages without emojis
