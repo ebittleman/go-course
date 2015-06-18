@@ -40,7 +40,8 @@ Go, or golang is an open source programming language that has the aim of making 
 - Warm up, Lets get our laptops setup!
 - Part 1 - Hello World!
 - Part 2 - Dig in to the rules (syntax) of the Go programming language
-- Part 3 - You're going to help me add some new feature to my Blog Program
+- Part 3 - You're going to help me fix my calculator
+- Part 4 - If there's time, we'll add some new features to the blog
 
 .image ./images/golang-logo.png _ 225
 
@@ -366,3 +367,19 @@ These are typically used in if statements
 .play code/operators/logical.go  /^func main/,/^}/
 
 * End of Part 2. Questions?
+
+* Part 3 - Help me fix my calculator!
+
+1. In Git Bash Run the following commands
+
+  go get -u github.com/ebittleman/go-course
+  cd $GOPATH/src/github.com/ebittleman/go-course
+  go run main.go
+
+2. Add the go-course project to SublimeText
+
+3. Go to:
+
+.link http://127.0.0.1:8080/ http://127.0.0.1:8080/
+
+4. Help me fix my calculator!
