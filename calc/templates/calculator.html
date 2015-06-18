@@ -1,0 +1,159 @@
+<h1>Calculator</h1>
+
+<div class="row">
+	<h2>Add</h2>
+    <div class="col-xs-12 col-md-6">
+        <form 
+            action="/calc/add" 
+            method="POST" 
+            enctype="application/x-www-form-urlencoded" 
+            role="form"
+        >
+	    	<div class="alert alert-danger hidden errorMsg" role="alert">
+	          <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+	          <span class="sr-only">Error:</span>
+	          <span class="errorTxt"></span>
+	        </div>
+            <div class="row">
+            	<span class="col-xs-4">
+                	<input placeholder="a" name="a" type="number" class="form-control" value="">
+            	</span>
+            	<span class="col-xs-1 text-center">+</span>
+            	<span class="col-xs-4">
+                	<input placeholder="b" name="b" type="number" class="form-control" value="">
+            	</span>
+            	<span class="col-xs-1 text-center"><button type="submit">=</button></span>
+            	<span class="col-xs-2 text-center result"></span>
+            </div>
+        </form>
+    </div>
+</div>
+<hr>
+<div class="row">
+	<h2>Subtract</h2>
+    <div class="col-xs-12 col-md-6">
+        <form 
+            action="/calc/subtract" 
+            method="POST" 
+            enctype="application/x-www-form-urlencoded" 
+            role="form"
+        >
+        	<div class="alert alert-danger hidden errorMsg" role="alert">
+	          <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+	          <span class="sr-only">Error:</span>
+	          <span class="errorTxt"></span>
+	        </div>
+            <div class="row">
+            	<span class="col-xs-4">
+                	<input placeholder="a" name="a" type="number" class="form-control" value="">
+            	</span>
+            	<span class="col-xs-1 text-center">-</span>
+            	<span class="col-xs-4">
+                	<input placeholder="b" name="b" type="number" class="form-control" value="">
+            	</span>
+            	<span class="col-xs-1 text-center"><button type="submit">=</button></span>
+            	<span class="col-xs-2 text-center result"></span>
+            </div>
+        </form>
+
+    </div>
+</div>
+<hr>
+<div class="row">
+	<h2>Multiply</h2>
+    <div class="col-xs-12 col-md-6">
+        <form 
+            action="/calc/multiply" 
+            method="POST" 
+            enctype="application/x-www-form-urlencoded" 
+            role="form"
+        >
+        	<div class="alert alert-danger hidden errorMsg" role="alert">
+	          <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+	          <span class="sr-only">Error:</span>
+	          <span class="errorTxt"></span>
+	        </div>
+            <div class="row">
+            	<span class="col-xs-4">
+                	<input placeholder="a" name="a" type="number" class="form-control" value="">
+            	</span>
+            	<span class="col-xs-1 text-center">*</span>
+            	<span class="col-xs-4">
+                	<input placeholder="b" name="b" type="number" class="form-control" value="">
+            	</span>
+            	<span class="col-xs-1 text-center"><button type="submit">=</button></span>
+            	<span class="col-xs-2 text-center result"></span>
+            </div>
+        </form>
+
+    </div>
+</div>
+<hr>
+<div class="row">
+	<h2>Divide</h2>
+    <div class="col-xs-12 col-md-6">
+        <form 
+            action="/calc/divide" 
+            method="POST" 
+            enctype="application/x-www-form-urlencoded" 
+            role="form"
+        >
+        	<div class="alert alert-danger hidden errorMsg" role="alert">
+	          <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+	          <span class="sr-only">Error:</span>
+	          <span class="errorTxt"></span>
+	        </div>
+            <div class="row">
+            	<span class="col-xs-4">
+                	<input placeholder="a" name="a" type="number" class="form-control" value="">
+            	</span>
+            	<span class="col-xs-1 text-center">/</span>
+            	<span class="col-xs-4">
+                	<input placeholder="b" name="b" type="number" class="form-control" value="">
+            	</span>
+            	<span class="col-xs-1 text-center"><button type="submit">=</button></span>
+            	<span class="col-xs-2 text-center result"></span>
+            </div>
+        </form>
+
+    </div>
+</div>
+<hr>
+{{ define "calculatorScript" }}
+<script type="text/javascript">
+	$(function(){
+        var $forms = $('form');
+        
+        $forms.submit(function(e){
+            e.stopPropagation();
+            var $form = $(this);
+
+            var $errorMsg = $('.errorMsg', $form);
+        	var $errorTxt = $('.errorTxt', $form);
+
+			// clear error message
+            $errorMsg.addClass('hidden');
+            $errorTxt.html('');
+
+            $.post(
+                $form.attr('action'),
+                $form.serializeArray(),
+                function(resp){
+                	var data = $form.data();
+                	console.log();
+                    console.log(resp);
+                    $('.result', $form).html(resp.answer);
+                },
+                'json'
+            ).fail(function(req, err, errorTxt){
+                // show server error message
+                $errorTxt.html(errorTxt);
+                $errorMsg.removeClass('hidden');
+                console.log(arguments);
+            });
+
+            return false;
+        });
+    });
+</script>
+{{ end }}

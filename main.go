@@ -9,6 +9,8 @@ import (
 	"os"
 
 	_ "github.com/ebittleman/go-course/blog"
+	_ "github.com/ebittleman/go-course/calc"
+	"github.com/ebittleman/go-course/view"
 )
 
 var httpFlag *string
@@ -18,6 +20,9 @@ func init() {
 	httpFlag = flag.String("http", ":8080", "Define which local port to bind to")
 	helpFlag = flag.Bool("help", false, "Flag to print output and exit")
 	flag.CommandLine.SetOutput(os.Stderr)
+
+	// register user interface elements
+	view.RegisterGlob("./templates/*.html")
 }
 
 func main() {
